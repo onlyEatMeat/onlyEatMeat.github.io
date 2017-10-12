@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Java," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="在一个类中再定义一个类，就将在类中再定义的那个类称为内部类。内部类分为成员内部类、局部内部类以及匿名类。
+一、成员内部类1、成员内部类简介在一个类中使用内部类，可以在内部类中直接存取其所在类的私有成员变量。尽管这些类成员被修饰为private。package com.eddie.innerclass;public class OuterClass &amp;#123;	// 在外部类实例化内部类对象引用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java-内部类">
+<meta property="og:url" content="http://onlyEatMeat.github.io/2017/10/11/Java/核心技术/Java-内部类/index.html">
+<meta property="og:site_name" content="Eddie's Blogs">
+<meta property="og:description" content="在一个类中再定义一个类，就将在类中再定义的那个类称为内部类。内部类分为成员内部类、局部内部类以及匿名类。
+一、成员内部类1、成员内部类简介在一个类中使用内部类，可以在内部类中直接存取其所在类的私有成员变量。尽管这些类成员被修饰为private。package com.eddie.innerclass;public class OuterClass &amp;#123;	// 在外部类实例化内部类对象引用">
+<meta property="og:image" content="http://onlyEatMeat.github.io/Java内部类.jpg">
+<meta property="og:image" content="http://onlyEatMeat.github.io/this关键字.jpg">
+<meta property="og:updated_time" content="2017-10-12T08:13:25.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java-内部类">
+<meta name="twitter:description" content="在一个类中再定义一个类，就将在类中再定义的那个类称为内部类。内部类分为成员内部类、局部内部类以及匿名类。
+一、成员内部类1、成员内部类简介在一个类中使用内部类，可以在内部类中直接存取其所在类的私有成员变量。尽管这些类成员被修饰为private。package com.eddie.innerclass;public class OuterClass &amp;#123;	// 在外部类实例化内部类对象引用">
+<meta name="twitter:image" content="http://onlyEatMeat.github.io/Java内部类.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://onlyEatMeat.github.io/2017/10/11/Java/核心技术/Java-内部类/"/>
+
+
+
+
+
+  <title>Java-内部类 | Eddie's Blogs</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?3a3f201f9da5d7ce144e95bbcef38760";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Eddie's Blogs</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onlyEatMeat.github.io/2017/10/11/Java/核心技术/Java-内部类/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Eddie">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eddie's Blogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Java-内部类</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-11T11:43:47+08:00">
+                2017-10-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/内部类/" itemprop="url" rel="index">
+                    <span itemprop="name">内部类</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在一个类中再定义一个类，就将在类中再定义的那个类称为内部类。内部类分为成员内部类、局部内部类以及匿名类。</p>
+<h3 id="一、成员内部类"><a href="#一、成员内部类" class="headerlink" title="一、成员内部类"></a>一、成员内部类</h3><h5 id="1、成员内部类简介"><a href="#1、成员内部类简介" class="headerlink" title="1、成员内部类简介"></a>1、成员内部类简介</h5><p>在一个类中使用内部类，可以在内部类中直接存取其所在类的私有成员变量。尽管这些类成员被修饰为private。<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">package com.eddie.innerclass;</div><div class="line"></div><div class="line">public class OuterClass &#123;</div><div class="line">	// 在外部类实例化内部类对象引用</div><div class="line">	innerClass iClass = new innerClass();</div><div class="line"></div><div class="line">	public void ouf() &#123;</div><div class="line">		// 在外部类方法中调用内部类方法</div><div class="line">		iClass.inf();</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	class innerClass &#123;</div><div class="line">		// 内部类的构造方法</div><div class="line">		public innerClass() &#123;</div><div class="line">			// TODO Auto-generated constructor stub</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		// 内部类的成员方法</div><div class="line">		public void inf() &#123;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		// 内部类成员变量</div><div class="line">		int y = 0;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	// 外部类方法，返回值为内部类引用</div><div class="line">	public innerClass doit() &#123;</div><div class="line">		// 外部类不可以直接访问内部类成员变量</div><div class="line">		// y = 4;</div><div class="line">		iClass.y = 4;</div><div class="line">		// 返回内部类引用</div><div class="line">		return new innerClass();</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public static void main(String[] args) &#123;</div><div class="line">		// TODO Auto-generated method stub</div><div class="line">		OuterClass oClass = new OuterClass();</div><div class="line">		// 内部类的对象实例化操作必须在外部类或外部类的非静态方法中实现</div><div class="line">		innerClass in = oClass.doit();</div><div class="line">		innerClass in2 = oClass.new innerClass();</div><div class="line">		System.out.println(in.y);</div><div class="line">		System.out.println(in2.y);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>如果在外部类和非静态方法之外实例化内部类对象，需要使用外部类。内部类的形式指定该对象的类型。<br>内部类对象会依赖于外部类对象，除非已经存在一个外部类对象，否则类中不会出现内部类对象。</p>
+<h5 id="2-内部类向上转型为接口"><a href="#2-内部类向上转型为接口" class="headerlink" title="2.内部类向上转型为接口"></a>2.内部类向上转型为接口</h5><p>如果将一个权限修饰符为private的内部类向上转型为其父类对象，或者直接向上转型为一个接口，在程序中就可以完全隐藏内部类的具体实现过程。<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">package com.eddie.innerclass;</div><div class="line"></div><div class="line">interface OuterInterface &#123;</div><div class="line">	public void f();</div><div class="line">&#125;</div><div class="line"></div><div class="line">public class InterfacaInner &#123;</div><div class="line">	public static void main(String[] args) &#123;</div><div class="line">		OuterClass2 oClass2 = new OuterClass2();</div><div class="line">		OuterInterface oInterface = oClass2.doit();</div><div class="line">		oInterface.f();</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">class OuterClass2 &#123;</div><div class="line">	// 定义一个内部类实现OutInterface接口</div><div class="line">	private class InnerClass implements OuterInterface &#123;</div><div class="line"></div><div class="line">		public InnerClass(String string) &#123;</div><div class="line">			// TODO Auto-generated constructor stub</div><div class="line">			System.out.println(string);</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		@Override</div><div class="line">		public void f() &#123;</div><div class="line">			// TODO Auto-generated method stub</div><div class="line">			System.out.println(&quot;访问内部类中的f()方法&quot;);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	// 定义一个方法，返回值类型为OuterInterface接口</div><div class="line">	public OuterInterface doit() &#123;</div><div class="line">		return new InnerClass(&quot;访问内部类构造方法&quot;);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>运行结果如图：<br><img src="Java内部类.jpg" alt=""><br>非内部类不能被声明为private或protected访问类型。</p>
+<h5 id="3、使用this关键字获取内部类与外部类的引用"><a href="#3、使用this关键字获取内部类与外部类的引用" class="headerlink" title="3、使用this关键字获取内部类与外部类的引用"></a>3、使用this关键字获取内部类与外部类的引用</h5><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">package com.eddie.innerclass;</div><div class="line"></div><div class="line">public class TheSameName &#123;</div><div class="line">	private int x = 6;</div><div class="line">	// 在外部类中实例化内部类对象</div><div class="line">	Inner inner = new Inner();</div><div class="line"></div><div class="line">	// 通过外部类的方法调用内部类的方法</div><div class="line">	public void outf() &#123;</div><div class="line">		inner.doit(3);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	private class Inner &#123;</div><div class="line">		private int x = 9;</div><div class="line"></div><div class="line">		public void doit(int x) &#123;</div><div class="line">			x++; // 调用的是形参x</div><div class="line">			System.out.println(x);</div><div class="line">			this.x++; // 调用的是内部类的变量x</div><div class="line">			System.out.println(this.x);</div><div class="line">			TheSameName.this.x++; // 调用的是外部类的变量x</div><div class="line">			System.out.println(TheSameName.this.x);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public static void main(String[] args) &#123;</div><div class="line">		TheSameName theSameName = new TheSameName();</div><div class="line">		theSameName.outf();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>运行结果如下图所示：<br><img src="this关键字.jpg" alt=""></p>
+<h3 id="二、局部内部类"><a href="#二、局部内部类" class="headerlink" title="二、局部内部类"></a>二、局部内部类</h3><p>内部类不仅可以在类中进行定义，也可以在类的局部位置定义，如在类的方法或任意的作用域中均可以定义内部类。<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">package com.eddie.innerclass;</div><div class="line"></div><div class="line">interface OuterInterface2 &#123;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">public class OutClass2 &#123;</div><div class="line">	public OuterInterface2 doit(final String x) &#123;</div><div class="line">		// 在doit()方法中定义一个内部类</div><div class="line">		class InnerClass implements OuterInterface2 &#123;</div><div class="line">			public InnerClass(String string) &#123;</div><div class="line">				// TODO Auto-generated constructor stub</div><div class="line">				string = x;</div><div class="line">				System.out.println(string);</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		return new InnerClass(&quot;doit()&quot;);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public static void main(String[] args) &#123;</div><div class="line">		OutClass2 oClass2 = new OutClass2();</div><div class="line">		oClass2.doit(&quot;Eddie&quot;);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="三、匿名内部类"><a href="#三、匿名内部类" class="headerlink" title="三、匿名内部类"></a>三、匿名内部类</h3><p>return语句中的返回值为一个匿名内部类<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">package com.eddie.innerclass;</div><div class="line"></div><div class="line">interface OuterInterface3 &#123;</div><div class="line">	public int getValue();</div><div class="line">&#125;</div><div class="line"></div><div class="line">public class OutClass3 &#123;</div><div class="line"></div><div class="line">	public OuterInterface3 doit() &#123;</div><div class="line">		return new OuterInterface3() &#123;   //声明匿名内部类</div><div class="line">			private int i = 0;</div><div class="line"></div><div class="line">			public int getValue() &#123;</div><div class="line">				return i;</div><div class="line">			&#125;</div><div class="line">		&#125;;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public static void main(String[] args) &#123;</div><div class="line">		// TODO Auto-generated method stub</div><div class="line">		OutClass3 oClass3 = new OutClass3();</div><div class="line">		System.out.println(oClass3.doit().getValue());</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="四、静态内部类"><a href="#四、静态内部类" class="headerlink" title="四、静态内部类"></a>四、静态内部类</h3><p>一个静态内部类中可以声明static成员，但是在非静态内部类中不可以声明静态成员。静态内部类有一个最大的特点，就是不可以使用外部类的非静态成员。</p>
+<h3 id="五、内部类的继承"><a href="#五、内部类的继承" class="headerlink" title="五、内部类的继承"></a>五、内部类的继承</h3><p>在某个类继承内部类时，必须硬性的给予这个类一个带参数的构造方法，并且该构造方法的参数为需要继承内部类的外部类的引用，同时在构造方法体中使用a.super()语句，这样才为继承提供了必要的对象引用。<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">package com.eddie.innerclass;</div><div class="line"></div><div class="line">public class OutputInnerClass extends Parents.Sub &#123;</div><div class="line"></div><div class="line">	public OutputInnerClass(Parents parents) &#123;</div><div class="line">		parents.super();</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public static void main(String[] args) &#123;</div><div class="line">		// TODO Auto-generated method stub</div><div class="line">		OutputInnerClass oInnerClass = new OutputInnerClass(new Parents());</div><div class="line">		oInnerClass.doit();</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">class Parents &#123;</div><div class="line">	class Sub &#123;</div><div class="line">		public void doit() &#123;</div><div class="line">			System.out.println(&quot;Parents&quot;);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/10/Java/核心技术/Java-掌握final变量、方法、类/" rel="next" title="Java-掌握final变量、方法、类">
+                <i class="fa fa-chevron-left"></i> Java-掌握final变量、方法、类
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image"
+              src="/images/avatar.jpg"
+              alt="Eddie" />
+          
+            <p class="site-author-name" itemprop="name">Eddie</p>
+            <p class="site-description motion-element" itemprop="description">I can achieve all my dreams</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives/">
+            
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、成员内部类"><span class="nav-number">1.</span> <span class="nav-text">一、成员内部类</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1、成员内部类简介"><span class="nav-number">1.0.1.</span> <span class="nav-text">1、成员内部类简介</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-内部类向上转型为接口"><span class="nav-number">1.0.2.</span> <span class="nav-text">2.内部类向上转型为接口</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3、使用this关键字获取内部类与外部类的引用"><span class="nav-number">1.0.3.</span> <span class="nav-text">3、使用this关键字获取内部类与外部类的引用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、局部内部类"><span class="nav-number">2.</span> <span class="nav-text">二、局部内部类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、匿名内部类"><span class="nav-number">3.</span> <span class="nav-text">三、匿名内部类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、静态内部类"><span class="nav-number">4.</span> <span class="nav-text">四、静态内部类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、内部类的继承"><span class="nav-number">5.</span> <span class="nav-text">五、内部类的继承</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Eddie</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

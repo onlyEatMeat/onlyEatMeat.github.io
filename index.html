@@ -62,7 +62,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.2" />
 
 
 
@@ -261,7 +261,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onlyEatMeat.github.io/2017/09/26/Java/Java-抽象类与接口/">
+    <link itemprop="mainEntityOfPage" href="http://onlyEatMeat.github.io/2017/10/11/Java/核心技术/Java-内部类/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Eddie">
@@ -280,7 +280,331 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/09/26/Java/Java-抽象类与接口/" itemprop="url">Java-抽象类与接口</a></h1>
+                <a class="post-title-link" href="/2017/10/11/Java/核心技术/Java-内部类/" itemprop="url">Java-内部类</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-11T11:43:47+08:00">
+                2017-10-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/内部类/" itemprop="url" rel="index">
+                    <span itemprop="name">内部类</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在一个类中再定义一个类，就将在类中再定义的那个类称为内部类。内部类分为成员内部类、局部内部类以及匿名类。</p>
+<h3 id="一、成员内部类"><a href="#一、成员内部类" class="headerlink" title="一、成员内部类"></a>一、成员内部类</h3><h5 id="1、成员内部类简介"><a href="#1、成员内部类简介" class="headerlink" title="1、成员内部类简介"></a>1、成员内部类简介</h5><p>在一个类中使用内部类，可以在内部类中直接存取其所在类的私有成员变量。尽管这些类成员被修饰为private。<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">package com.eddie.innerclass;</div><div class="line"></div><div class="line">public class OuterClass &#123;</div><div class="line">	// 在外部类实例化内部类对象引用</div><div class="line">	innerClass iClass = new innerClass();</div><div class="line"></div><div class="line">	public void ouf() &#123;</div><div class="line">		// 在外部类方法中调用内部类方法</div><div class="line">		iClass.inf();</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	class innerClass &#123;</div><div class="line">		// 内部类的构造方法</div><div class="line">		public innerClass() &#123;</div><div class="line">			// TODO Auto-generated constructor stub</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		// 内部类的成员方法</div><div class="line">		public void inf() &#123;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		// 内部类成员变量</div><div class="line">		int y = 0;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	// 外部类方法，返回值为内部类引用</div><div class="line">	public innerClass doit() &#123;</div><div class="line">		// 外部类不可以直接访问内部类成员变量</div><div class="line">		// y = 4;</div><div class="line">		iClass.y = 4;</div><div class="line">		// 返回内部类引用</div><div class="line">		return new innerClass();</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public static void main(String[] args) &#123;</div><div class="line">		// TODO Auto-generated method stub</div><div class="line">		OuterClass oClass = new OuterClass();</div><div class="line">		// 内部类的对象实例化操作必须在外部类或外部类的非静态方法中实现</div><div class="line">		innerClass in = oClass.doit();</div><div class="line">		innerClass in2 = oClass.new innerClass();</div><div class="line">		System.out.println(in.y);</div><div class="line">		System.out.println(in2.y);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>如果在外部类和非静态方法之外实例化内部类对象，需要使用外部类。内部类的形式指定该对象的类型。<br>内部类对象会依赖于外部类对象，除非已经存在一个外部类对象，否则类中不会出现内部类对象。</p>
+<h5 id="2-内部类向上转型为接口"><a href="#2-内部类向上转型为接口" class="headerlink" title="2.内部类向上转型为接口"></a>2.内部类向上转型为接口</h5><p>如果将一个权限修饰符为private的内部类向上转型为其父类对象，或者直接向上转型为一个接口，在程序中就可以完全隐藏内部类的具体实现过程。<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">package com.eddie.innerclass;</div><div class="line"></div><div class="line">interface OuterInterface &#123;</div><div class="line">	public void f();</div><div class="line">&#125;</div><div class="line"></div><div class="line">public class InterfacaInner &#123;</div><div class="line">	public static void main(String[] args) &#123;</div><div class="line">		OuterClass2 oClass2 = new OuterClass2();</div><div class="line">		OuterInterface oInterface = oClass2.doit();</div><div class="line">		oInterface.f();</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">class OuterClass2 &#123;</div><div class="line">	// 定义一个内部类实现OutInterface接口</div><div class="line">	private class InnerClass implements OuterInterface &#123;</div><div class="line"></div><div class="line">		public InnerClass(String string) &#123;</div><div class="line">			// TODO Auto-generated constructor stub</div><div class="line">			System.out.println(string);</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		@Override</div><div class="line">		public void f() &#123;</div><div class="line">			// TODO Auto-generated method stub</div><div class="line">			System.out.println(&quot;访问内部类中的f()方法&quot;);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	// 定义一个方法，返回值类型为OuterInterface接口</div><div class="line">	public OuterInterface doit() &#123;</div><div class="line">		return new InnerClass(&quot;访问内部类构造方法&quot;);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>运行结果如图：<br><img src="Java内部类.jpg" alt=""><br>非内部类不能被声明为private或protected访问类型。</p>
+<h5 id="3、使用this关键字获取内部类与外部类的引用"><a href="#3、使用this关键字获取内部类与外部类的引用" class="headerlink" title="3、使用this关键字获取内部类与外部类的引用"></a>3、使用this关键字获取内部类与外部类的引用</h5><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">package com.eddie.innerclass;</div><div class="line"></div><div class="line">public class TheSameName &#123;</div><div class="line">	private int x = 6;</div><div class="line">	// 在外部类中实例化内部类对象</div><div class="line">	Inner inner = new Inner();</div><div class="line"></div><div class="line">	// 通过外部类的方法调用内部类的方法</div><div class="line">	public void outf() &#123;</div><div class="line">		inner.doit(3);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	private class Inner &#123;</div><div class="line">		private int x = 9;</div><div class="line"></div><div class="line">		public void doit(int x) &#123;</div><div class="line">			x++; // 调用的是形参x</div><div class="line">			System.out.println(x);</div><div class="line">			this.x++; // 调用的是内部类的变量x</div><div class="line">			System.out.println(this.x);</div><div class="line">			TheSameName.this.x++; // 调用的是外部类的变量x</div><div class="line">			System.out.println(TheSameName.this.x);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public static void main(String[] args) &#123;</div><div class="line">		TheSameName theSameName = new TheSameName();</div><div class="line">		theSameName.outf();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>运行结果如下图所示：<br><img src="this关键字.jpg" alt=""></p>
+<h3 id="二、局部内部类"><a href="#二、局部内部类" class="headerlink" title="二、局部内部类"></a>二、局部内部类</h3><p>内部类不仅可以在类中进行定义，也可以在类的局部位置定义，如在类的方法或任意的作用域中均可以定义内部类。<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">package com.eddie.innerclass;</div><div class="line"></div><div class="line">interface OuterInterface2 &#123;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">public class OutClass2 &#123;</div><div class="line">	public OuterInterface2 doit(final String x) &#123;</div><div class="line">		// 在doit()方法中定义一个内部类</div><div class="line">		class InnerClass implements OuterInterface2 &#123;</div><div class="line">			public InnerClass(String string) &#123;</div><div class="line">				// TODO Auto-generated constructor stub</div><div class="line">				string = x;</div><div class="line">				System.out.println(string);</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		return new InnerClass(&quot;doit()&quot;);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public static void main(String[] args) &#123;</div><div class="line">		OutClass2 oClass2 = new OutClass2();</div><div class="line">		oClass2.doit(&quot;Eddie&quot;);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="三、匿名内部类"><a href="#三、匿名内部类" class="headerlink" title="三、匿名内部类"></a>三、匿名内部类</h3><p>return语句中的返回值为一个匿名内部类<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">package com.eddie.innerclass;</div><div class="line"></div><div class="line">interface OuterInterface3 &#123;</div><div class="line">	public int getValue();</div><div class="line">&#125;</div><div class="line"></div><div class="line">public class OutClass3 &#123;</div><div class="line"></div><div class="line">	public OuterInterface3 doit() &#123;</div><div class="line">		return new OuterInterface3() &#123;   //声明匿名内部类</div><div class="line">			private int i = 0;</div><div class="line"></div><div class="line">			public int getValue() &#123;</div><div class="line">				return i;</div><div class="line">			&#125;</div><div class="line">		&#125;;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public static void main(String[] args) &#123;</div><div class="line">		// TODO Auto-generated method stub</div><div class="line">		OutClass3 oClass3 = new OutClass3();</div><div class="line">		System.out.println(oClass3.doit().getValue());</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="四、静态内部类"><a href="#四、静态内部类" class="headerlink" title="四、静态内部类"></a>四、静态内部类</h3><p>一个静态内部类中可以声明static成员，但是在非静态内部类中不可以声明静态成员。静态内部类有一个最大的特点，就是不可以使用外部类的非静态成员。</p>
+<h3 id="五、内部类的继承"><a href="#五、内部类的继承" class="headerlink" title="五、内部类的继承"></a>五、内部类的继承</h3><p>在某个类继承内部类时，必须硬性的给予这个类一个带参数的构造方法，并且该构造方法的参数为需要继承内部类的外部类的引用，同时在构造方法体中使用a.super()语句，这样才为继承提供了必要的对象引用。<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">package com.eddie.innerclass;</div><div class="line"></div><div class="line">public class OutputInnerClass extends Parents.Sub &#123;</div><div class="line"></div><div class="line">	public OutputInnerClass(Parents parents) &#123;</div><div class="line">		parents.super();</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public static void main(String[] args) &#123;</div><div class="line">		// TODO Auto-generated method stub</div><div class="line">		OutputInnerClass oInnerClass = new OutputInnerClass(new Parents());</div><div class="line">		oInnerClass.doit();</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">class Parents &#123;</div><div class="line">	class Sub &#123;</div><div class="line">		public void doit() &#123;</div><div class="line">			System.out.println(&quot;Parents&quot;);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onlyEatMeat.github.io/2017/10/10/Java/核心技术/Java-掌握final变量、方法、类/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Eddie">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eddie's Blogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/10/Java/核心技术/Java-掌握final变量、方法、类/" itemprop="url">Java-掌握final变量、方法、类</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-10T14:46:56+08:00">
+                2017-10-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/final/" itemprop="url" rel="index">
+                    <span itemprop="name">final</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="一、final变量"><a href="#一、final变量" class="headerlink" title="一、final变量"></a>一、final变量</h3><p>final关键字可用于变量声明，一旦该变量被设定，就不可以再改变该变量的值。通常，由final定义的变量为常量。<br>final关键字定义的变量必须在声明时对其进行赋值操作。final不进可以修饰基本数据类型的变量，还可以修饰对象引用。一旦一个对象引用被修饰为final后，它只能恒定指向一个对象，无法将其改变以指向另一个对象。一个既是static又是final的字段只占据一段不能改变的存储空间。<br>Java实例如下：<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">package com.eddie.finaltest;</div><div class="line"></div><div class="line">import static java.lang.System.out;</div><div class="line">import java.util.Random;</div><div class="line"></div><div class="line">public class FinalData &#123;</div><div class="line">	static Random rand = new Random();</div><div class="line">	@SuppressWarnings(&quot;unused&quot;)</div><div class="line">	private final int Value_1 = 9; // final变量</div><div class="line">	@SuppressWarnings(&quot;unused&quot;)</div><div class="line">	private static final int Value_2 = 10; // final、static变量</div><div class="line">	private final Test test = new Test(); // final引用</div><div class="line">	@SuppressWarnings(&quot;unused&quot;)</div><div class="line">	private Test test2 = new Test(); // 不是final的引用</div><div class="line">	private final int[] a = &#123; 1, 2, 3, 4, 5, 6 &#125;; // 定义为final的数组</div><div class="line">	private final int i4 = rand.nextInt(20);</div><div class="line">	private static final int i5 = rand.nextInt(20);</div><div class="line"></div><div class="line">	public String toString() &#123;</div><div class="line">		return i4 + &quot;&quot; + i5 + &quot;&quot;;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public static void main(String[] args) &#123;</div><div class="line">		FinalData data = new FinalData();</div><div class="line">		// 可以对指定为final的引用中的成员变量赋值</div><div class="line">		data.test.i = 3;</div><div class="line">		// 但不能将定义为final的引用指向其它引用</div><div class="line">		// data.test = new Test();</div><div class="line">		</div><div class="line">		// 不能改变定义为final的常量值</div><div class="line">		// data.Value_1 = 2;</div><div class="line">		data.test2 = new Test();</div><div class="line">		for (int i = 0; i &lt; data.a.length; i++) &#123;</div><div class="line">			// 不能对定义为final的数组赋值</div><div class="line">			// a[i] = 9;</div><div class="line">		&#125;</div><div class="line">		out.println(data);</div><div class="line">		out.println(&quot;data2&quot;);</div><div class="line">		out.println(new FinalData());</div><div class="line">		out.println(data);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">class Test &#123;</div><div class="line">	int i = 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在以上实例中，被定义为final的常量定义时使用大写的英文字母，并且中间使用下划线进行连接，这是Java的编码规则。被定义为final的数据无论是常量、对象引用还是数组，在主函数中都不可以被改变。<br>一个被定义为final的对象引用只能指向唯一一个对象，不可以将它再指向其他对象，但时一个对象本身的值确是可以改变的，为了使一个常量真正做到不可更改，可以将常量声明为static final。<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">private final int a1 = rand.nextInt(10);</div><div class="line">private static final int a2 = rand.nextInt(10);</div></pre></td></tr></table></figure></p>
+<p>在以上两行代码中，a1不是恒定不变的。但是a2和a1不同，由于它被声明为 static final 形式，所以在内存中为a2开辟了一个恒定不变的区域，当再次调用上述代码初始化a2时，仍然指向a2这块内存区域，所以a2的值保持不变。<br><strong>在Java中定义全局常量，通常使用 public static final 修饰，这样的常量只能在定义时被赋值。</strong></p>
+<h3 id="二、final方法"><a href="#二、final方法" class="headerlink" title="二、final方法"></a>二、final方法</h3><pre><code>被定义为final的方法不能被重写。
+</code></pre><p>如果一个父类的某个方法被设置为private修饰符，子类将无法访问该方法，自然无法覆盖该方法，所以一个定义为private的方法隐式被定义为final类型，这样无须将一个定义为private的方法再定义为final类型。<br>Java实例如下：<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">package com.eddie.finaltest;</div><div class="line"></div><div class="line">class Parents &#123;</div><div class="line">	// private修饰的方法子类无法访问，也无法重写</div><div class="line">	@SuppressWarnings(&quot;unused&quot;)</div><div class="line">	private final void doit() &#123;</div><div class="line">		System.out.println(&quot;父类.doit()&quot;);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	final void doit2() &#123;</div><div class="line">		System.out.println(&quot;父类.doit2()&quot;);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public void doit3() &#123;</div><div class="line">		System.out.println(&quot;父类.doit3()&quot;);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">class Sub extends Parents &#123;</div><div class="line">	public final void doit() &#123;</div><div class="line">		System.out.println(&quot;子类.doit()&quot;);</div><div class="line">	&#125;</div><div class="line">	// final方法不能覆盖</div><div class="line">	// final void doit2() &#123;</div><div class="line">	// System.out.println(&quot;子类.doit2()&quot;);</div><div class="line">	// &#125;</div><div class="line">	public void doit3() &#123;</div><div class="line">		System.out.println(&quot;子类.doit3()&quot;);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">public class FinalMethod &#123;</div><div class="line"></div><div class="line">	public static void main(String[] args) &#123;</div><div class="line">		// TODO Auto-generated method stub</div><div class="line">		Sub sub = new Sub();</div><div class="line">		sub.doit();</div><div class="line">		Parents parents = sub;</div><div class="line">		parents.doit2();</div><div class="line">		parents.doit3();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>输出结果如下：<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">子类.doit()</div><div class="line">父类.doit2()</div><div class="line">子类.doit3()</div></pre></td></tr></table></figure></p>
+<p>从以上实例可以看出，final方法不能被覆盖，例如，doit2()方法不能在子类中被重写，但是在父类中定义了一个private final的doit()方法，同时在子类中也定义了一个doit()方法，从表面上看，子类中的doit()方法覆盖了父类的doit()方法，但是覆盖必须满足一个对象向上转型为它的基本类型并调用相同方法这样一个条件，对象P不能调用doit()方法，可见子类中的doit()方法并不是正常覆盖，而是声场一个新的方法。</p>
+<h3 id="三、final类"><a href="#三、final类" class="headerlink" title="三、final类"></a>三、final类</h3><pre><code>定义为final的类不能被继承。
+</code></pre><p>如果希望一个类不允许任何类继承，并且不允许其他人对这个类进行任何改动，可以将这个类设置为final形式。<br>如果将某个类设置为final形式，则类中的所有方法都被隐式设置为final形式，但是final类中的成员变量可以被定义为final或非final形式。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onlyEatMeat.github.io/2017/09/26/Java/核心技术/Java-抽象类与接口/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Eddie">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eddie's Blogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/26/Java/核心技术/Java-抽象类与接口/" itemprop="url">Java-抽象类与接口</a></h1>
         
 
         <div class="post-meta">
@@ -428,7 +752,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onlyEatMeat.github.io/2017/09/25/Java/Java-多态/">
+    <link itemprop="mainEntityOfPage" href="http://onlyEatMeat.github.io/2017/09/25/Java/核心技术/Java-多态/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Eddie">
@@ -447,7 +771,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/09/25/Java/Java-多态/" itemprop="url">Java-多态</a></h1>
+                <a class="post-title-link" href="/2017/09/25/Java/核心技术/Java-多态/" itemprop="url">Java-多态</a></h1>
         
 
         <div class="post-meta">
@@ -579,7 +903,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onlyEatMeat.github.io/2017/09/25/Java/Java-方法的重载/">
+    <link itemprop="mainEntityOfPage" href="http://onlyEatMeat.github.io/2017/09/25/Java/核心技术/Java-方法的重载/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Eddie">
@@ -598,7 +922,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/09/25/Java/Java-方法的重载/" itemprop="url">Java-方法的重载</a></h1>
+                <a class="post-title-link" href="/2017/09/25/Java/核心技术/Java-方法的重载/" itemprop="url">Java-方法的重载</a></h1>
         
 
         <div class="post-meta">
@@ -727,7 +1051,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onlyEatMeat.github.io/2017/09/24/Java/Java-Arrays-反转排序/">
+    <link itemprop="mainEntityOfPage" href="http://onlyEatMeat.github.io/2017/09/24/Java/基础知识/Java-Arrays-反转排序/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Eddie">
@@ -746,7 +1070,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/09/24/Java/Java-Arrays-反转排序/" itemprop="url">Java-Arrays-反转排序</a></h1>
+                <a class="post-title-link" href="/2017/09/24/Java/基础知识/Java-Arrays-反转排序/" itemprop="url">Java-Arrays-反转排序</a></h1>
         
 
         <div class="post-meta">
@@ -880,7 +1204,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onlyEatMeat.github.io/2017/09/24/Java/Java-Arrays-选择排序/">
+    <link itemprop="mainEntityOfPage" href="http://onlyEatMeat.github.io/2017/09/24/Java/基础知识/Java-Arrays-选择排序/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Eddie">
@@ -899,7 +1223,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/09/24/Java/Java-Arrays-选择排序/" itemprop="url">Java-Arrays-选择排序</a></h1>
+                <a class="post-title-link" href="/2017/09/24/Java/基础知识/Java-Arrays-选择排序/" itemprop="url">Java-Arrays-选择排序</a></h1>
         
 
         <div class="post-meta">
@@ -1032,7 +1356,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onlyEatMeat.github.io/2017/09/24/Java/Java-Arrays-冒泡排序/">
+    <link itemprop="mainEntityOfPage" href="http://onlyEatMeat.github.io/2017/09/24/Java/基础知识/Java-Arrays-冒泡排序/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Eddie">
@@ -1051,7 +1375,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/09/24/Java/Java-Arrays-冒泡排序/" itemprop="url">Java-Arrays-冒泡排序</a></h1>
+                <a class="post-title-link" href="/2017/09/24/Java/基础知识/Java-Arrays-冒泡排序/" itemprop="url">Java-Arrays-冒泡排序</a></h1>
         
 
         <div class="post-meta">
@@ -1172,154 +1496,13 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onlyEatMeat.github.io/2017/02/19/2017的目标/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Eddie">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Eddie's Blogs">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/02/19/2017的目标/" itemprop="url">2017的目标</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-19T11:18:25+08:00">
-                2017-02-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/人生随笔/" itemprop="url" rel="index">
-                    <span itemprop="name">人生随笔</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="在2017年的新开始，给自己定下如下几个小目标。"><a href="#在2017年的新开始，给自己定下如下几个小目标。" class="headerlink" title="在2017年的新开始，给自己定下如下几个小目标。"></a>在2017年的新开始，给自己定下如下几个小目标。</h3><ol>
-<li>学完廖雪峰老师的JavaScript教程全栈教程。<p></p></li>
-<li>自学Python，并读完《Python绝技-运用Python成为顶级黑客》</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -1366,7 +1549,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1377,7 +1560,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
