@@ -53,7 +53,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Java," />
+  <meta name="keywords" content="Oracle," />
 
 
 
@@ -69,16 +69,24 @@
 
 
 
-<meta name="description" content="直接选择排序的基本思想:直接选择排序的基本思想是将指定排序位置与其它数组元素分别对比，如果满足条件就交换元素值，注意这里区别冒泡排序，不是交换相邻元素，而是把满足条件的元素与指定的排序位置交换(如果从最后一个元素开始排序)，这样排序好的位置逐渐扩大，最后整个数组都称为已排序好的格式。Java代码实现如下所示:package com.eddie.arrays;/** * @ClassName: Se">
+<meta name="description" content="因数据库中某张表日益积累导致表空间满额，但该表未建分区，根据索引删除太耗时间往往造成delete语句超时。所以通过rename的方式新建一个分区表以便日后维护
+一、新建日分区表在Oracle数据库中原有一张表DATA_OLD,表中数据如下：新建一张数据库表复制原表中所有数据且将原有数据分区，并新增数据按日自动分区，执行SQL如下：20171009为当天日期CREATE TABLE DATA_NEW">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java-Arrays-选择排序">
-<meta property="og:url" content="http://onlyEatMeat.github.io/2017/09/24/Java/基础知识/Java-Arrays-选择排序/index.html">
+<meta property="og:title" content="Oracle分区表按日自动创建新分区">
+<meta property="og:url" content="http://onlyEatMeat.github.io/2017/10/19/Oracle/Oracle分区表按日自动创建新分区/index.html">
 <meta property="og:site_name" content="Eddie's Blogs">
-<meta property="og:description" content="直接选择排序的基本思想:直接选择排序的基本思想是将指定排序位置与其它数组元素分别对比，如果满足条件就交换元素值，注意这里区别冒泡排序，不是交换相邻元素，而是把满足条件的元素与指定的排序位置交换(如果从最后一个元素开始排序)，这样排序好的位置逐渐扩大，最后整个数组都称为已排序好的格式。Java代码实现如下所示:package com.eddie.arrays;/** * @ClassName: Se">
-<meta property="og:updated_time" content="2017-09-24T14:25:25.000Z">
+<meta property="og:description" content="因数据库中某张表日益积累导致表空间满额，但该表未建分区，根据索引删除太耗时间往往造成delete语句超时。所以通过rename的方式新建一个分区表以便日后维护
+一、新建日分区表在Oracle数据库中原有一张表DATA_OLD,表中数据如下：新建一张数据库表复制原表中所有数据且将原有数据分区，并新增数据按日自动分区，执行SQL如下：20171009为当天日期CREATE TABLE DATA_NEW">
+<meta property="og:image" content="http://onlyEatMeat.github.io/图片1.png">
+<meta property="og:image" content="http://onlyEatMeat.github.io/图片2.png">
+<meta property="og:image" content="http://onlyEatMeat.github.io/图片3.png">
+<meta property="og:image" content="http://onlyEatMeat.github.io/图片4.png">
+<meta property="og:updated_time" content="2017-10-19T05:27:34.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java-Arrays-选择排序">
-<meta name="twitter:description" content="直接选择排序的基本思想:直接选择排序的基本思想是将指定排序位置与其它数组元素分别对比，如果满足条件就交换元素值，注意这里区别冒泡排序，不是交换相邻元素，而是把满足条件的元素与指定的排序位置交换(如果从最后一个元素开始排序)，这样排序好的位置逐渐扩大，最后整个数组都称为已排序好的格式。Java代码实现如下所示:package com.eddie.arrays;/** * @ClassName: Se">
+<meta name="twitter:title" content="Oracle分区表按日自动创建新分区">
+<meta name="twitter:description" content="因数据库中某张表日益积累导致表空间满额，但该表未建分区，根据索引删除太耗时间往往造成delete语句超时。所以通过rename的方式新建一个分区表以便日后维护
+一、新建日分区表在Oracle数据库中原有一张表DATA_OLD,表中数据如下：新建一张数据库表复制原表中所有数据且将原有数据分区，并新增数据按日自动分区，执行SQL如下：20171009为当天日期CREATE TABLE DATA_NEW">
+<meta name="twitter:image" content="http://onlyEatMeat.github.io/图片1.png">
 
 
 
@@ -108,13 +116,13 @@
 
 
 
-  <link rel="canonical" href="http://onlyEatMeat.github.io/2017/09/24/Java/基础知识/Java-Arrays-选择排序/"/>
+  <link rel="canonical" href="http://onlyEatMeat.github.io/2017/10/19/Oracle/Oracle分区表按日自动创建新分区/"/>
 
 
 
 
 
-  <title>Java-Arrays-选择排序 | Eddie's Blogs</title>
+  <title>Oracle分区表按日自动创建新分区 | Eddie's Blogs</title>
   
 
 
@@ -261,7 +269,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onlyEatMeat.github.io/2017/09/24/Java/基础知识/Java-Arrays-选择排序/">
+    <link itemprop="mainEntityOfPage" href="http://onlyEatMeat.github.io/2017/10/19/Oracle/Oracle分区表按日自动创建新分区/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Eddie">
@@ -278,7 +286,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Java-Arrays-选择排序</h1>
+          <h1 class="post-title" itemprop="name headline">Oracle分区表按日自动创建新分区</h1>
         
 
         <div class="post-meta">
@@ -290,8 +298,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-24T22:02:30+08:00">
-                2017-09-24
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-19T13:16:50+08:00">
+                2017-10-19
               </time>
             
 
@@ -313,19 +321,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/Arrays/" itemprop="url" rel="index">
-                    <span itemprop="name">Arrays</span>
+                  <a href="/categories/Oracle/" itemprop="url" rel="index">
+                    <span itemprop="name">Oracle</span>
                   </a>
                 </span>
 
@@ -361,7 +358,15 @@
       
 
       
-        <h3 id="直接选择排序的基本思想"><a href="#直接选择排序的基本思想" class="headerlink" title="直接选择排序的基本思想:"></a><strong>直接选择排序的基本思想:</strong></h3><h4 id="直接选择排序的基本思想是将指定排序位置与其它数组元素分别对比，如果满足条件就交换元素值，注意这里区别冒泡排序，不是交换相邻元素，而是把满足条件的元素与指定的排序位置交换-如果从最后一个元素开始排序-，这样排序好的位置逐渐扩大，最后整个数组都称为已排序好的格式。"><a href="#直接选择排序的基本思想是将指定排序位置与其它数组元素分别对比，如果满足条件就交换元素值，注意这里区别冒泡排序，不是交换相邻元素，而是把满足条件的元素与指定的排序位置交换-如果从最后一个元素开始排序-，这样排序好的位置逐渐扩大，最后整个数组都称为已排序好的格式。" class="headerlink" title="直接选择排序的基本思想是将指定排序位置与其它数组元素分别对比，如果满足条件就交换元素值，注意这里区别冒泡排序，不是交换相邻元素，而是把满足条件的元素与指定的排序位置交换(如果从最后一个元素开始排序)，这样排序好的位置逐渐扩大，最后整个数组都称为已排序好的格式。"></a>直接选择排序的基本思想是将指定排序位置与其它数组元素分别对比，如果满足条件就交换元素值，注意这里区别冒泡排序，不是交换相邻元素，而是把满足条件的元素与指定的排序位置交换(如果从最后一个元素开始排序)，这样排序好的位置逐渐扩大，最后整个数组都称为已排序好的格式。</h4><h5 id="Java代码实现如下所示"><a href="#Java代码实现如下所示" class="headerlink" title="Java代码实现如下所示:"></a>Java代码实现如下所示:</h5><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">package com.eddie.arrays;</div><div class="line"></div><div class="line">/**</div><div class="line"> * @ClassName: SelectSort</div><div class="line"> * @Description: TODO 直接选择排序</div><div class="line"> * @author Eddie</div><div class="line"> * @date 2017年9月19日 下午4:14:14</div><div class="line"> * </div><div class="line"> */</div><div class="line">public class SelectSort &#123;</div><div class="line">	public static void main(String[] args) &#123;</div><div class="line">		int[] array = &#123; 63, 4, 24, 1, 3, 15 &#125;;</div><div class="line">		SelectSort sorter = new SelectSort();</div><div class="line">		sorter.sort(array);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	/**</div><div class="line">	 * 直接选择排序</div><div class="line">	 * </div><div class="line">	 * @param array</div><div class="line">	 *            要排序的数组</div><div class="line">	 */</div><div class="line">	public void sort(int[] array) &#123;</div><div class="line">		int index;</div><div class="line">		for (int i = 1; i &lt; array.length; i++) &#123;</div><div class="line">			index = 0;</div><div class="line">			for (int j = 1; j &lt;= array.length - i; j++) &#123;</div><div class="line">				if (array[j] &gt; array[index]) &#123;</div><div class="line">					index = j;</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">			int temp = array[array.length - i]; </div><div class="line">			array[array.length - i] = array[index]; </div><div class="line">			array[index] = temp; </div><div class="line">		&#125;</div><div class="line">		showArray(array); </div><div class="line">	&#125;</div><div class="line"></div><div class="line">	/**</div><div class="line">	 * 显示数组中的所有元素</div><div class="line">	 * </div><div class="line">	 * @param array</div><div class="line">	 *            要显示的数组</div><div class="line">	 */</div><div class="line">	public void showArray(int[] array) &#123;</div><div class="line">		for (int i : array) &#123; </div><div class="line">			System.out.print(&quot; &gt;&quot; + i); </div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+        <p><strong>因数据库中某张表日益积累导致表空间满额，但该表未建分区，根据索引删除太耗时间往往造成delete语句超时。所以通过rename的方式新建一个分区表以便日后维护</strong></p>
+<h3 id="一、新建日分区表"><a href="#一、新建日分区表" class="headerlink" title="一、新建日分区表"></a>一、新建日分区表</h3><p>在Oracle数据库中原有一张表DATA_OLD,表中数据如下：<br><img src="图片1.png" alt=""><br>新建一张数据库表复制原表中所有数据且将原有数据分区，并新增数据按日自动分区，执行SQL如下：<br>20171009为当天日期<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">CREATE TABLE DATA_NEW2 PARTITION BY RANGE (DCREATE_TIME)</div><div class="line">INTERVAL (NUMTODSINTERVAL(1,&apos;DAY&apos;))</div><div class="line">(PARTITION p1 VALUES LESS THAN (TO_DATE(&apos;20171009&apos;, &apos;YYYYMMDD&apos;)))</div><div class="line">AS SELECT * FROM DATA_OLD WHERE 1=1;</div></pre></td></tr></table></figure></p>
+<p>新生成的数据库表如下图所示：<br>P1为20171009之前的数据分区，SYS_P299为20171009当天的表数据分区<br><img src="图片2.png" alt=""><br>下述SQL语句可以查到当前表中的所有分区：<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">SELECT table_name,partition_name FROM SYS.USER_TAB_PARTITIONS WHERE</div><div class="line">TABLE_NAME=&apos;DATA_NEW2&apos;;</div></pre></td></tr></table></figure></p>
+<p>显示结果如下：<br><img src="图片3.png" alt=""><br>使用SQL语句在表中新增一条测试语句：<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">INSERT INTO DATA_NEW2 VALUES(&apos;2017011&apos;,&apos;测试1&apos;,TO_DATE(&apos;20171010&apos;, &apos;yyyymmdd&apos;),30);</div></pre></td></tr></table></figure></p>
+<p>表DATA_NEW2中会自动增加一个分区：<br><img src="图片4.png" alt=""></p>
+<h3 id="二、rename"><a href="#二、rename" class="headerlink" title="二、rename"></a>二、rename</h3><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">RENAME DATA_OLD TO DATA_20171009;</div><div class="line">RENAME DATA_NEW2 TO DATA_OLD;</div></pre></td></tr></table></figure>
+<hr>
+<p>因为表分区是按日自动递增的，因此可以在代码中增加根据最新的数据所在的分区重命名（格式自定义）。</p>
+
       
     </div>
     
@@ -378,7 +383,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Java/" rel="tag"># Java</a>
+            <a href="/tags/Oracle/" rel="tag"># Oracle</a>
           
         </div>
       
@@ -391,8 +396,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/09/24/Java/基础知识/Java-Arrays-冒泡排序/" rel="next" title="Java-Arrays-冒泡排序">
-                <i class="fa fa-chevron-left"></i> Java-Arrays-冒泡排序
+              <a href="/2017/10/11/Java/核心技术/Java-内部类/" rel="next" title="Java-内部类">
+                <i class="fa fa-chevron-left"></i> Java-内部类
               </a>
             
           </div>
@@ -400,10 +405,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/09/24/Java/基础知识/Java-Arrays-反转排序/" rel="prev" title="Java-Arrays-反转排序">
-                Java-Arrays-反转排序 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -540,7 +541,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#直接选择排序的基本思想"><span class="nav-number">1.</span> <span class="nav-text">直接选择排序的基本思想:</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#直接选择排序的基本思想是将指定排序位置与其它数组元素分别对比，如果满足条件就交换元素值，注意这里区别冒泡排序，不是交换相邻元素，而是把满足条件的元素与指定的排序位置交换-如果从最后一个元素开始排序-，这样排序好的位置逐渐扩大，最后整个数组都称为已排序好的格式。"><span class="nav-number">1.1.</span> <span class="nav-text">直接选择排序的基本思想是将指定排序位置与其它数组元素分别对比，如果满足条件就交换元素值，注意这里区别冒泡排序，不是交换相邻元素，而是把满足条件的元素与指定的排序位置交换(如果从最后一个元素开始排序)，这样排序好的位置逐渐扩大，最后整个数组都称为已排序好的格式。</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Java代码实现如下所示"><span class="nav-number">1.1.1.</span> <span class="nav-text">Java代码实现如下所示:</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、新建日分区表"><span class="nav-number">1.</span> <span class="nav-text">一、新建日分区表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、rename"><span class="nav-number">2.</span> <span class="nav-text">二、rename</span></a></li></ol></div>
             
 
           </div>
